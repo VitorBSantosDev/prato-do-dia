@@ -1,6 +1,6 @@
 import { limparTexto, identificarIngredientesEmFalta, verificarTemIngredientesBase } from "./utilitarias.js";
 
-const TODAS_CATEGORIAS = "Todas";
+export const TODAS_CATEGORIAS = "Todas";
 
 export function filtrarEOrdenarReceitas(receitas, criterios){
     const receitasFiltradas = receitas.filter(receita => verificarPassaNosFiltros(receita, criterios));

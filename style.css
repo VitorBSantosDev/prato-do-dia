@@ -476,8 +476,12 @@ input, select, textarea {
     border-radius: var(--raio); 
 }
 
-.mensagem-erro { 
-    color: var(--erro); 
+.mensagem-erro {
+    color: var(--erro);
+}
+
+.mensagem-erro p {
+    margin: 0 0 var(--espaco-pequeno);
 }
 
 .seccao { 
