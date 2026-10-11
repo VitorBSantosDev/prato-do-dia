@@ -1,7 +1,7 @@
 import { validarReceita } from "./utilitarias.js";
 import { verificarEReceitaPropria } from "./receitas.js";
 
-const NOME_FICHEIRO_EXPORTACAO = "tacho-da-mae.json";
+const NOME_FICHEIRO_EXPORTACAO = "prato-do-dia.json";
 
 const botaoExportarReceitas = document.querySelector("#exportar-receitas");
 const inputImportarReceita = document.querySelector("#importar-receitas");
@@ -88,7 +88,7 @@ async function importarReceitas(minhasReceitas, aoImportarReceitas){
         mostrarMensagemCopia(criarMensagemImportacao(receitasValidas.length, quantidadeIgnoradas));
     } catch (erro) {
         console.error(erro);
-        mostrarMensagemCopia("Não foi possível importar. Confirme que o ficheiro é uma exportação do Tacho da Mãe.");
+        mostrarMensagemCopia("Não foi possível importar. Confirme que o ficheiro é uma exportação do Prato do Dia.");
     }
 
     inputImportarReceita.value = "";

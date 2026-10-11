@@ -1,4 +1,4 @@
-# Tacho da Mãe
+# Prato do Dia
 
 ## Sobre o projeto
 
@@ -8,7 +8,7 @@ Projeto desenvolvido no âmbito do módulo de Programação em Javascript no pro
 
 ## GitHub pages
 
-[vitorbsantosdev.github.io/tacho-da-mae](https://vitorbsantosdev.github.io/tacho-da-mae/)
+[vitorbsantosdev.github.io/prato-do-dia](https://vitorbsantosdev.github.io/prato-do-dia/)
 
 ## Correr localmente
 
@@ -17,10 +17,10 @@ Para correr o programa localmente, siga os seguintes passos pela ordem apresenta
 1. **Clonar o repositório:** no Git Bash, introduza o comando:
 
    ```bash
-   git clone https://github.com/VitorBSantosDev/tacho-da-mae.git
+   git clone https://github.com/VitorBSantosDev/prato-do-dia.git
    ```
 
-2. **Abrir a pasta** `tacho-da-mae` no VS Code.
+2. **Abrir a pasta** `prato-do-dia` no VS Code.
 3. **Instalar a extensão Live Server**, se ainda não estiver instalada.
 4. **Abrir com o Live Server:** botão direito no `index.html` → "Open with Live Server".
 
@@ -99,7 +99,7 @@ Os módulos não importam o `main.js`: é o `main.js` que lhes entrega as funç�
 
 As receitas novas são guardadas no `localStorage` em vez do ficheiro `dados.json` porque o browser não pode alterar ficheiros, e o GitHub Pages não tem servidor.
 
-As chaves utilizadas são `tacho-favoritos`, `tacho-minhas-receitas`, `tacho-removidas`, `tacho-despensa`, `tacho-tema` e `tacho-rascunho`.
+As chaves utilizadas são `prato-favoritos`, `prato-minhas-receitas`, `prato-removidas`, `prato-despensa`, `prato-tema` e `prato-rascunho`.
 
 ## Requisitos do projeto
 

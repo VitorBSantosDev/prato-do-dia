@@ -1,117 +1,128 @@
 [
   {
-    "id": "bacalhau-a-bras",
-    "nome": "Bacalhau à Brás",
-    "categoria": "Peixe",
-    "imagem": "img/bacalhau-a-bras.svg",
-    "tempo": 45,
-    "ingredientes": [
-      "400 g bacalhau demolhado e desfiado",
-      "400 g batata palha",
-      "2 cebolas cortadas em meias-luas",
-      "2 dentes de alho picados",
-      "6 ovos",
-      "1 dl azeite",
-      "Azeitonas pretas e salsa picada q.b.",
-      "Sal e pimenta q.b."
-    ],
-    "ingredientesBase": [
-      "bacalhau", "batata palha", "cebola", "alho", "ovo"
-    ],
-    "preparacao": [
-      "Aqueça o azeite num tacho largo e aloure a cebola e o alho em lume brando.",
-      "Junte o bacalhau desfiado e deixe cozinhar 5 minutos, mexendo sempre.",
-      "Adicione a batata palha e envolva bem.",
-      "Bata os ovos com sal e pimenta, deite sobre o preparado e mexa em lume brando até os ovos ficarem cremosos, sem secarem.",
-      "Sirva logo, polvilhado com salsa e decorado com azeitonas."
-    ]
-  },
-  {
-    "id": "caldo-verde",
-    "nome": "Caldo Verde",
-    "categoria": "Sopas",
-    "imagem": "img/caldo-verde.svg",
-    "tempo": 40,
-    "ingredientes": [
-      "800 g batatas",
-      "1 cebola",
-      "2 dentes de alho",
-      "250 g couve-galega cortada em juliana fina",
-      "1 chouriço de carne",
-      "0,5 dl azeite",
-      "1,5 l água",
-      "Sal q.b."
-    ],
-    "ingredientesBase": [
-      "batata", "cebola", "alho", "couve", "chouriço"
-    ],
-    "preparacao": [
-      "Coza as batatas, a cebola e o alho na água com sal durante 20 minutos.",
-      "Triture tudo com a varinha mágica até obter um creme liso.",
-      "Junte o azeite e a couve e deixe ferver 5 minutos, sem tapar, para a couve ficar verde.",
-      "Sirva em tigelas de barro com uma rodela de chouriço em cada uma e um fio de azeite."
-    ]
-  },
-  {
-    "id": "arroz-doce",
-    "nome": "Arroz Doce",
+    "id": "bolo-iogurte",
+    "nome": "Bolo de Iogurte",
     "categoria": "Doces",
-    "imagem": "img/arroz-doce.svg",
-    "tempo": 60,
+    "imagem": "img/bolo-de-iogurte.png",
+    "tempo": 50,
     "ingredientes": [
-      "250 g arroz carolino",
-      "1 l leite gordo",
-      "5 dl água",
-      "200 g açúcar",
-      "4 gemas",
-      "1 casca de limão",
-      "1 pau de canela",
-      "1 pitada de sal",
-      "Canela em pó para decorar q.b."
+      "1 iogurte natural ou de sabores",
+      "4 ovos",
+      "3 copos de açúcar (copo de iogurte)",
+      "3 copos de farinha (copo de iogurte)",
+      "1 copo de óleo de girassol (copo de iogurte)",
+      "1 colher de sobremesa de fermento"
     ],
     "ingredientesBase": [
-      "arroz", "leite", "açúcar", "ovo", "limão", "canela"
+      "iogurte", "ovo", "açúcar", "farinha", "óleo", "fermento"
     ],
     "preparacao": [
-      "Coza o arroz na água com o sal e a casca de limão até a água ser absorvida.",
-      "Aqueça o leite com o pau de canela e vá juntando ao arroz aos poucos, mexendo sempre.",
-      "Quando o arroz estiver bem cozido e cremoso, junte o açúcar e deixe ferver mais 5 minutos.",
-      "Retire do lume, tempere as gemas com um pouco do arroz e junte ao tacho, mexendo depressa.",
-      "Deite em travessas e, depois de frio, desenhe com canela em pó."
+      "Misture os ovos com o iogurte.",
+      "Adicione o óleo de girassol e o açúcar, mexendo bem.",
+      "Adicione a farinha e o fermento e mexa bem até a mistura ficar uniforme.",
+      "Coloque a massa na forma.",
+      "Leve durante 40 minutos ao forno a 180ºC e pique com um palito para ver se está cozido e para não ficar seco."
     ]
   },
   {
-    "id": "pasteis-de-nata",
-    "nome": "Pastéis de Nata",
+    "id": "crepe",
+    "nome": "Crepes",
     "categoria": "Doces",
-    "imagem": "img/pasteis-de-nata.svg",
+    "imagem": "img/crepes.png",
     "tempo": 75,
     "ingredientes": [
-      "1 rolo de massa folhada",
-      "5 dl leite",
-      "250 g açúcar",
-      "40 g farinha",
-      "6 gemas",
-      "1 dl água",
-      "1 pau de canela",
-      "1 casca de limão"
+      "250 g de farinha",
+      "3 colheres de sopa de açúcar",
+      "1 pitada de sal",
+      "4 ovos",
+      "1/2 l de leite",
+      "3 colheres de sopa de óleo",
+      "1 dl de rum ",
+      "1/2 pacote de fermento"
     ],
     "ingredientesBase": [
-      "massa folhada", "leite", "açúcar", "farinha", "ovo", "limão", "canela"
+      "farinha", "açúcar", "ovo", "leite", "óleo", "rum", "fermento"
     ],
     "preparacao": [
-      "Enrole a massa folhada, corte em rodelas de 2 cm e forre as formas com os polegares molhados.",
-      "Ferva a água com o açúcar, a canela e o limão durante 3 minutos para fazer a calda.",
-      "Dissolva a farinha num pouco de leite frio e junte ao restante leite a ferver, mexendo até engrossar.",
-      "Junte a calda ao creme, deixe amornar e incorpore as gemas.",
-      "Encha as formas até 3/4 e leve ao forno a 250 °C durante 12 a 15 minutos, até ficarem com manchas escuras."
+      "Num recipiente, misture a farinha, o fermento, o açúcar, o sal, os ovos e o óleo.",
+      "Adicione aos poucos o leite, o rum e a água até obter uma massa bem lisa.",
+      "Deixe, se possível, repousar por 1 hora.",
+      "Cozinhe em lume forte numa frigideira ligeiramente untada."
+    ]
+  },
+  {
+    "id": "bacalhau-da-avo",
+    "nome": "Bacalhau da Avó",
+    "categoria": "Peixe",
+    "imagem": "img/bacalhau-avo.png",
+    "tempo": 60,
+    "ingredientes": [
+      "600 g de bacalhau",
+      "1,5 dl de azeite",
+      "2 cebolas médias",
+      "2 dentes de alho, salsa e louro",
+      "1 pimento verde",
+      "3 ovos cozidos",
+      "50 g de amêndoas peladas",
+      "0,5 l de leite",
+      "colheres de sopa de maionese",
+      "125 g de Puré de Batata",
+      "1 cubo de Caldo de Galinha"
+    ],
+    "ingredientesBase": [
+      "bacalhau", "cebola", "alho", "salsa", "louro", "pimento verde", "ovo", "amêndoa", "leite", "maionese", "puré de batata", "caldo de galinha"
+    ],
+    "preparacao": [
+      "Ponha o bacalhau a demolhar pelo menos durante 24 horas.",
+      "Coloque-o no leite.",
+      "Corte as cebolas em meias luas finas e os alhos e o pimento em tiras.",
+      "Refogue o preparado em metade do azeite e junte o louro, a salsa e um cubo de caldo de galinha.",
+      "Coza o bacalhau no restante azeite, junte o refogado e leve a cozinhar no forno.",
+      "Terminada a cozedura, coloque o bacalhau num pirex, decore com puré de batata e salpique com ovo cozido picado e as amêndoas laminadas.",
+      "Cubra com a maionese e leve ao forno a corar.",
+      "No momento de servir, enfeite a seu gosto."
+    ]
+  },
+  {
+    "id": "feijoada",
+    "nome": "Feijoada",
+    "categoria": "Carne",
+    "imagem": "img/feijoada.png",
+    "tempo": 90,
+    "ingredientes": [
+      "1 kg de carne de porco variada",
+      "1 chouriço de carne",
+      "2 cebolas",
+      "4 dentes de alho",
+      "1 dl de azeite",
+      "1 cenoura",
+      "100 g de tomate pelado",
+      "800 g de feijão encarnado enlatado",
+      "1/4 de lombardo",
+      "1 farinheira",
+      "sal q.b."
+    ],
+    "ingredientesBase": [
+      "porco", "chouriço", "cebola", "alho", "cenoura", "tomate", "feijão", "lombardo", "farinheira"
+    ],
+    "preparacao": [
+      "De véspera, salgue a carne.",
+      "No dia seguinte, lave-a bem e coloque numa panela de pressão.",
+      "Junte-lhes o chouriço, uma cebola e água até cobrir.",
+      "Ferva por 40 minutos.",
+      "Pique a restante cebola e os alhos e refogue no azeite.",
+      "Adicione a cenoura cortada em rodelas, o tomate picado e o feijão.",
+      "Regue com 5 dl da água da cozedura das carnes e misture o lombardo cortado em pedaços.",
+      "Cozinhe por 25 minutos.",
+      "Por fim, envolva as carnes e a farinheira e cozinhe mais dez minutos.",
+      "Sirva de seguida."
     ]
   },
   {
     "id": "francesinha",
     "nome": "Francesinha",
     "categoria": "Carne",
-    "imagem": "img/francesinha.svg",
+    "imagem": "img/francesinha.png",
     "tempo": 90,
     "ingredientes": [
       "8 fatias de pão de forma",
@@ -140,7 +151,7 @@
     "id": "arroz-de-pato",
     "nome": "Arroz de Pato",
     "categoria": "Carne",
-    "imagem": "img/arroz-de-pato.svg",
+    "imagem": "img/arroz-pato.png",
     "tempo": 120,
     "ingredientes": [
       "1 pato (cerca de 2 kg)",

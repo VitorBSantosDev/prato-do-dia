@@ -1,6 +1,6 @@
 import { lerArmazenamento, guardarArmazenamento } from "./utilitarias.js";
 
-const CHAVE_TEMA = "tacho-tema";
+const CHAVE_TEMA = "prato-tema";
 
 export function iniciarTema(){
     const botaoTema = document.querySelector("#tema");

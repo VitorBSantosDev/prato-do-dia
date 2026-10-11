@@ -1,7 +1,7 @@
 import { lerArmazenamento, guardarArmazenamento } from "./utilitarias.js";
 
-const CHAVE_MINHAS_RECEITAS = "tacho-minhas-receitas";
-const CHAVE_REMOVIDAS = "tacho-removidas";
+const CHAVE_MINHAS_RECEITAS = "prato-minhas-receitas";
+const CHAVE_REMOVIDAS = "prato-removidas";
 const PREFIXO_RECEITA_PROPRIA = "minha-";
 
 export function criarIdReceitaPropria(){

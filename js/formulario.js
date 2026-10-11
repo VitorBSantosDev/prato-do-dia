@@ -1,7 +1,7 @@
 import { validarReceita, converterTextoParaLista, separarPorVirgulas, reduzirImagem, lerArmazenamento, guardarArmazenamento, apagarArmazenamento, preencherLista } from "./utilitarias.js";
 import { criarIdReceitaPropria } from "./receitas.js";
 
-const CHAVE_RASCUNHO = "tacho-rascunho";
+const CHAVE_RASCUNHO = "prato-rascunho";
 const IMAGEM_PADRAO = "img/sem-imagem.svg";
 const DURACAO_MENSAGEM_MS = 5000;
 
