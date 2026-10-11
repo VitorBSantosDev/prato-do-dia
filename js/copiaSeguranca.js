@@ -22,9 +22,32 @@ function mostrarMensagemCopia(texto){
     mensagemCopia.hidden = false;
 }
 
+function criarMensagemImportacao(quantidadeImportadas, quantidadeIgnoradas){
+    const palavraImportadas = quantidadeImportadas === 1 ? "receita importada" : "receitas importadas";
+    const mensagemImportadas = `${quantidadeImportadas} ${palavraImportadas}.`;
+
+    if (quantidadeIgnoradas === 0){
+        return mensagemImportadas;
+    }
+
+    const fraseIgnoradas = quantidadeIgnoradas === 1 ? "foi ignorada (repetida ou inválida)" : "foram ignoradas (repetidas ou inválidas)";
+    return `${mensagemImportadas} ${quantidadeIgnoradas} ${fraseIgnoradas}.`;
+}
+
+function verificarPodeImportar(receitaImportada, minhasReceitas){
+    if (!verificarEReceitaPropria(receitaImportada)){
+        return false;
+    }
+    if (validarReceita(receitaImportada).length > 0){
+        return false;
+    }
+
+    return !minhasReceitas.some(receita => receita.id === receitaImportada.id);
+}
+
 function exportarReceitas(minhasReceitas){
     if (minhasReceitas.length === 0){
-        mostrarMensagemCopia("Ainda não criou nenhuma receita para exportar");
+        mostrarMensagemCopia("Ainda não criou nenhuma receita para exportar.");
         return;
     }
 
@@ -39,7 +62,7 @@ function exportarReceitas(minhasReceitas){
     linkDownload.click();
     URL.revokeObjectURL(endereco);
 
-    const mensagemExportacao = minhasReceitas.length !== 1 ? `Foram exportadas ${minhasReceitas.length} receitas.` : `Foi exportada ${minhasReceitas.length} receita.`;
+    const mensagemExportacao = minhasReceitas.length === 1 ? `Foi exportada ${minhasReceitas.length} receita.` : `Foram exportadas ${minhasReceitas.length} receitas.`;
     mostrarMensagemCopia(mensagemExportacao);
 }
 
@@ -58,23 +81,14 @@ async function importarReceitas(minhasReceitas, aoImportarReceitas){
             throw new Error("O ficheiro não tem uma lista de receitas.");
         }
 
-        const receitasValidas = receitasImportadas.filter(receitaImportada => {
-            return verificarEReceitaPropria(receitaImportada) &&
-                validarReceita(receitaImportada).length === 0 &&
-                !minhasReceitas.some(receita => receita.id === receitaImportada.id);
-        });
-
+        const receitasValidas = receitasImportadas.filter(receita => verificarPodeImportar(receita, minhasReceitas));
         aoImportarReceitas(receitasValidas);
 
-        const quantidadeImportadas = receitasValidas.length;
         const quantidadeIgnoradas = receitasImportadas.length - receitasValidas.length;
-        const palavraImportadas = quantidadeImportadas === 1 ? "receita importada" : "receitas importadas";
-        const fraseIgnoradas = quantidadeIgnoradas === 1 ? "foi ignorada (repetida ou inválida)" : "foram ignoradas (repetidas ou inválidas)";
-        const mensagemImportacao = `${quantidadeImportadas} ${palavraImportadas}.${quantidadeIgnoradas > 0 ? ` ${quantidadeIgnoradas} ${fraseIgnoradas}.` : ""}`;
-
-        mostrarMensagemCopia(mensagemImportacao);
+        mostrarMensagemCopia(criarMensagemImportacao(receitasValidas.length, quantidadeIgnoradas));
     } catch (erro) {
-        mostrarMensagemCopia("Não foi possível importar. Confirme que o ficheiro é uma exportação do Tacho da Mãe");
+        console.error(erro);
+        mostrarMensagemCopia("Não foi possível importar. Confirme que o ficheiro é uma exportação do Tacho da Mãe.");
     }
 
     inputImportarReceita.value = "";

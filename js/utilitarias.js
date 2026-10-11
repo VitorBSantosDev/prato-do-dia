@@ -18,6 +18,8 @@ const REGRAS_PLURAL = [
 ];
 const MIN_LETRAS_NOME = 3;
 const QUALIDADE_JPEG = 0.7;
+const LARGURA_IMAGEM = 400;
+const ALTURA_IMAGEM = 300;
 const MINUTOS_HORA = 60;
 
 export function formatarTempo(minutos){
@@ -73,8 +75,8 @@ export function validarReceita(receita){
     if (receita.nome.length < MIN_LETRAS_NOME){
         listaErros.push(`O nome precisa de pelo menos ${MIN_LETRAS_NOME} letras.`);
     }
-    if (isNaN(receita.tempo) || receita.tempo <= 0){
-        listaErros.push("O tempo tem de ser um número maior que 0.");
+    if (!Number.isInteger(receita.tempo) || receita.tempo <= 0){
+        listaErros.push("O tempo tem de ser um número inteiro maior que 0.");
     }
     if (receita.ingredientes.length === 0){
         listaErros.push("Escreva pelo menos um ingrediente.");
@@ -110,7 +112,7 @@ export function converterTextoDespensa(texto){
     return separarPorVirgulas(texto).map(ingrediente => normalizarIngrediente(ingrediente));
 }
 
-export function reduzirImagem(ficheiro, largura = 400, altura = 300){
+export function reduzirImagem(ficheiro, largura = LARGURA_IMAGEM, altura = ALTURA_IMAGEM){
     return createImageBitmap(ficheiro)
         .then(imagem => {
             const tela = document.createElement("canvas");

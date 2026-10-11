@@ -1,4 +1,4 @@
-import { lerArmazenamento, guardarArmazenamento } from "./utilitarias.js"
+import { lerArmazenamento, guardarArmazenamento } from "./utilitarias.js";
 
 const CHAVE_FAVORITOS = "tacho-favoritos";
 
@@ -8,7 +8,7 @@ export function criarFavoritos(){
     function adicionarOuRemover(id){
         if (listaFavoritos.includes(id)){
             listaFavoritos = listaFavoritos.filter(favorito => favorito !== id);
-        } else{
+        } else {
             listaFavoritos = [...listaFavoritos, id];
         }
 
@@ -23,5 +23,5 @@ export function criarFavoritos(){
         return listaFavoritos.length;
     }
 
-    return {adicionarOuRemover, verificarSeEFavorito: verificarSeEFavorito, contarFavoritos}
+    return { adicionarOuRemover, verificarSeEFavorito, contarFavoritos };
 }

@@ -1,4 +1,4 @@
-import { validarReceita, converterTextoParaLista, separarPorVirgulas, reduzirImagem, lerArmazenamento, guardarArmazenamento, apagarArmazenamento } from "./utilitarias.js";
+import { validarReceita, converterTextoParaLista, separarPorVirgulas, reduzirImagem, lerArmazenamento, guardarArmazenamento, apagarArmazenamento, preencherLista } from "./utilitarias.js";
 import { criarIdReceitaPropria } from "./receitas.js";
 
 const CHAVE_RASCUNHO = "tacho-rascunho";
@@ -13,6 +13,7 @@ let temporizadorSucesso;
 
 export function iniciarFormulario(aoAdicionarReceita){
     formAdicionarReceita.addEventListener("input", guardarRascunho);
+    formAdicionarReceita.tempo.addEventListener("beforeinput", bloquearNaoDigitos);
 
     formAdicionarReceita.addEventListener("submit", async (evento) => {
         evento.preventDefault();
@@ -57,6 +58,14 @@ function lerReceitaDoFormulario(){
     };
 }
 
+function bloquearNaoDigitos(evento){
+    const temCaracteresNaoDigitos = evento.data !== null && !/^\d+$/.test(evento.data);
+
+    if (temCaracteresNaoDigitos){
+        evento.preventDefault();
+    }
+}
+
 function limparFormulario(){
     caixaErros.hidden = true;
     formAdicionarReceita.reset();
@@ -64,8 +73,10 @@ function limparFormulario(){
 }
 
 function mostrarErros(listaMensagens){
-    caixaErros.innerHTML = listaMensagens.map(mensagem => `<li>${mensagem}</li>`).join("");
+    caixaErros.textContent = "";
+    preencherLista(caixaErros, listaMensagens);
     caixaErros.hidden = false;
+    caixaErros.scrollIntoView({ block: "start" });
     mensagemSucesso.hidden = true;
     clearTimeout(temporizadorSucesso);
 }
