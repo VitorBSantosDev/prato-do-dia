@@ -1,6 +1,6 @@
 const PROPORCAO_FIM_LISTA = 0.4;
 
-export function iniciarFunil(contarFiltrosAtivos, aoLimparFiltros){
+export function iniciarFunil(contarFiltrosAtivos){
     const filtros = document.querySelector("#filtros");
     const espacoFiltros = document.querySelector(".espaco-filtros");
     const listaReceitas = document.querySelector("#lista-receitas");
@@ -17,9 +17,9 @@ export function iniciarFunil(contarFiltrosAtivos, aoLimparFiltros){
             return;
         }
 
-        const filtrosSairamDoEcra = espacoFiltros.getBoundingClientRect().bottom < 0;
-        const aindaNasReceitas = listaReceitas.getBoundingClientRect().bottom > window.innerHeight * PROPORCAO_FIM_LISTA;
-        botaoFunil.dataset.visivel = String(filtrosSairamDoEcra && aindaNasReceitas);
+        const filtrosEstaoForaDoEcra = espacoFiltros.getBoundingClientRect().bottom < 0;
+        const estaNaZonaDasReceitas = listaReceitas.getBoundingClientRect().bottom > window.innerHeight * PROPORCAO_FIM_LISTA;
+        botaoFunil.dataset.visivel = String(filtrosEstaoForaDoEcra && estaNaZonaDasReceitas);
     }
 
     function atualizarContador(){
@@ -56,10 +56,6 @@ export function iniciarFunil(contarFiltrosAtivos, aoLimparFiltros){
     fundo.addEventListener("click", fecharPainel);
     document.querySelector("#fechar-filtros").addEventListener("click", fecharPainel);
     document.querySelector("#ver-receitas").addEventListener("click", verReceitas);
-    document.querySelector("#limpar-filtros").addEventListener("click", () => {
-        aoLimparFiltros();
-        atualizarContador();
-    });
     document.addEventListener("keydown", evento => {
         if (evento.key === "Escape" && verificarEstaAberto()){
             fecharPainel();
@@ -73,4 +69,6 @@ export function iniciarFunil(contarFiltrosAtivos, aoLimparFiltros){
 
     atualizarContador();
     mostrarBotaoFunil();
+
+    return { atualizarContador };
 }
