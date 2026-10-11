@@ -1,14 +1,14 @@
-import { iniciarTema } from './tema.js';
-import { carregarReceitas } from './api.js';
-import { criarFavoritos } from './favoritos.js';
-import { criarGestorReceitas } from './receitas.js';
-import { filtrarEOrdenarReceitas, TODAS_CATEGORIAS } from './filtros.js';
-import { criarCartao } from './cartoes.js';
-import { abrirPreparacao, pedirConfirmacaoRemover, iniciarModais } from './modais.js';
-import { iniciarFormulario } from './formulario.js';
-import { iniciarCopiaSeguranca } from './copiaSeguranca.js';
-import { iniciarFunil } from './funil.js';
-import { formatarTempo, limparTexto, lerArmazenamento, guardarArmazenamento, converterTextoDespensa } from './utilitarias.js';
+import { iniciarTema } from "./tema.js";
+import { carregarReceitas } from "./api.js";
+import { criarFavoritos } from "./favoritos.js";
+import { criarGestorReceitas } from "./receitas.js";
+import { filtrarEOrdenarReceitas, TODAS_CATEGORIAS } from "./filtros.js";
+import { criarCartao } from "./cartoes.js";
+import { abrirPreparacao, pedirConfirmacaoRemover, iniciarModais } from "./modais.js";
+import { iniciarFormulario } from "./formulario.js";
+import { iniciarCopiaSeguranca } from "./copiaSeguranca.js";
+import { iniciarFunil } from "./funil.js";
+import { formatarTempo, limparTexto, lerArmazenamento, guardarArmazenamento, converterTextoDespensa } from "./utilitarias.js";
 
 const CHAVE_DESPENSA = "tacho-despensa";
 
@@ -21,6 +21,7 @@ const filtroDespensa = document.querySelector("#despensa");
 const filtroReceitasPossiveis = document.querySelector("#so-ingredientes-despensa");
 const elementoResumo = document.querySelector("#resumo-filtro");
 const botaoReporRemovidas = document.querySelector("#repor-removidas");
+const botaoLimparFiltros = document.querySelector("#limpar-filtros");
 
 const favoritos = criarFavoritos();
 const gestorReceitas = criarGestorReceitas();
@@ -72,7 +73,7 @@ function mostrarReceitas(){
     listaReceitas.innerHTML = "";
 
     if (receitasVisiveis.length === 0){
-        listaReceitas.innerHTML = `<p class="mensagem">Nenhuma receita encontrada</p>`;
+        listaReceitas.innerHTML = `<p class="mensagem">Nenhuma receita encontrada.</p>`;
     } else {
         for (const receita of receitasVisiveis){
             listaReceitas.appendChild(criarCartao(receita, {
@@ -161,6 +162,7 @@ function limparFiltros(){
     filtroDespensa.value = "";
     guardarArmazenamento(localStorage, CHAVE_DESPENSA, "");
     mostrarReceitas();
+    funil.atualizarContador();
 }
 
 filtroPesquisa.addEventListener("input", mostrarReceitas);
@@ -175,6 +177,7 @@ filtroDespensa.addEventListener("input", () => {
 });
 
 botaoReporRemovidas.addEventListener("click", reporRemovidas);
+botaoLimparFiltros.addEventListener("click", limparFiltros);
 
 filtroDespensa.value = lerArmazenamento(localStorage, CHAVE_DESPENSA, "");
 
@@ -182,5 +185,5 @@ iniciarTema();
 iniciarModais(removerReceita);
 iniciarFormulario(receita => adicionarReceitas([receita]));
 iniciarCopiaSeguranca(gestorReceitas.obterMinhasReceitas, adicionarReceitas);
-iniciarFunil(contarFiltrosAtivos, limparFiltros);
+const funil = iniciarFunil(contarFiltrosAtivos);
 iniciarListaReceitas();
