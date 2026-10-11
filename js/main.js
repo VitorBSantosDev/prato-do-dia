@@ -2,7 +2,7 @@ import { iniciarTema } from './tema.js';
 import { carregarReceitas } from './api.js';
 import { criarFavoritos } from './favoritos.js';
 import { criarGestorReceitas } from './receitas.js';
-import { filtrarEOrdenarReceitas } from './filtros.js';
+import { filtrarEOrdenarReceitas, TODAS_CATEGORIAS } from './filtros.js';
 import { criarCartao } from './cartoes.js';
 import { abrirPreparacao, pedirConfirmacaoRemover, iniciarModais } from './modais.js';
 import { iniciarFormulario } from './formulario.js';
@@ -32,8 +32,26 @@ async function iniciarListaReceitas(){
         gestorReceitas.definirReceitasBase(await carregarReceitas());
         mostrarReceitas();
     } catch (erro) {
-        listaReceitas.innerHTML = `<p class="mensagem mensagem-erro">Erro. ${erro.message}. Tente novamente mais tarde.</p>`;
+        console.error(erro);
+        mostrarErroCarregamento();
     }
+}
+
+function mostrarErroCarregamento(){
+    const caixaErro = document.createElement("div");
+    caixaErro.className = "mensagem mensagem-erro";
+
+    const texto = document.createElement("p");
+    texto.textContent = "Não foi possível carregar as receitas.";
+
+    const botaoTentarNovamente = document.createElement("button");
+    botaoTentarNovamente.type = "button";
+    botaoTentarNovamente.className = "botao-tema";
+    botaoTentarNovamente.textContent = "Tentar novamente";
+    botaoTentarNovamente.addEventListener("click", iniciarListaReceitas);
+
+    caixaErro.append(texto, botaoTentarNovamente);
+    listaReceitas.replaceChildren(caixaErro);
 }
 
 function lerCriteriosFiltro(){
@@ -128,7 +146,7 @@ function contarFiltrosAtivos(){
 
     return [
         criterios.pesquisa !== "",
-        criterios.categoria !== "Todas",
+        criterios.categoria !== TODAS_CATEGORIAS,
         criterios.apenasFavoritas,
         criterios.apenasPossiveis,
         criterios.ingredientesDespensa.length > 0
@@ -137,7 +155,7 @@ function contarFiltrosAtivos(){
 
 function limparFiltros(){
     filtroPesquisa.value = "";
-    filtroCategoria.value = "Todas";
+    filtroCategoria.value = TODAS_CATEGORIAS;
     filtroFavorito.checked = false;
     filtroReceitasPossiveis.checked = false;
     filtroDespensa.value = "";
