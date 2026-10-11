@@ -1,6 +1,6 @@
 import { lerArmazenamento, guardarArmazenamento } from "./utilitarias.js";
 
-const CHAVE_FAVORITOS = "tacho-favoritos";
+const CHAVE_FAVORITOS = "prato-favoritos";
 
 export function criarFavoritos(){
     let listaFavoritos = lerArmazenamento(localStorage, CHAVE_FAVORITOS, []);
