@@ -17,16 +17,15 @@ function verificarPassaNosFiltros(receita, criterios){
     if (criterios.apenasFavoritas && !criterios.verificarSeEFavorito(receita.id)){
         return false;
     }
-    if (criterios.apenasPossiveis){
-        if (!verificarTemIngredientesBase(receita)){
-            return false;
-        }
-        if (identificarIngredientesEmFalta(receita, criterios.ingredientesDespensa).length > 0){
-            return false;
-        }
+    if (criterios.apenasPossiveis && !verificarConsegueFazer(receita, criterios.ingredientesDespensa)){
+        return false;
     }
 
     return true;
+}
+
+function verificarConsegueFazer(receita, ingredientesDespensa){
+    return verificarTemIngredientesBase(receita) && identificarIngredientesEmFalta(receita, ingredientesDespensa).length === 0;
 }
 
 function ordenarReceitas(receitas, ordem){
