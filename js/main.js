@@ -10,7 +10,7 @@ import { iniciarCopiaSeguranca } from "./copiaSeguranca.js";
 import { iniciarFunil } from "./funil.js";
 import { formatarTempo, limparTexto, lerArmazenamento, guardarArmazenamento, converterTextoDespensa } from "./utilitarias.js";
 
-const CHAVE_DESPENSA = "tacho-despensa";
+const CHAVE_DESPENSA = "prato-despensa";
 
 const listaReceitas = document.querySelector("#lista-receitas");
 const filtroPesquisa = document.querySelector("#pesquisa");
