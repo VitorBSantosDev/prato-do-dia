@@ -183,7 +183,7 @@ header p {
     gap: 8px;
     padding: 10px 16px;
     border: 1px solid var(--linha);
-    border-radius: 999px;
+    border-radius: var(--raio-redondo);
     background: var(--cartao);
     color: var(--azul);
     font-weight: 700;
@@ -212,7 +212,7 @@ header p {
     min-width: 22px;
     height: 22px;
     padding-inline: 6px;
-    border-radius: 999px;
+    border-radius: var(--raio-redondo);
     background: var(--azul);
     color: var(--cartao);
     font-size: 0.8rem;
@@ -298,7 +298,7 @@ header p {
     flex: 1;
     padding: 10px 16px;
     border: none;
-    border-radius: 999px;
+    border-radius: var(--raio-redondo);
     background: var(--azul);
     color: var(--cartao);
     font-weight: 700;
