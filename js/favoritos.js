@@ -2,16 +2,21 @@ import { lerArmazenamento, guardarArmazenamento } from "./utilitarias.js";
 
 const CHAVE_FAVORITOS = "prato-favoritos";
 
-export function criarFavoritos(){
+export function criarGestorFavoritos(){
     let listaFavoritos = lerArmazenamento(localStorage, CHAVE_FAVORITOS, []);
 
-    function adicionarOuRemover(id){
-        if (listaFavoritos.includes(id)){
-            listaFavoritos = listaFavoritos.filter(favorito => favorito !== id);
-        } else {
-            listaFavoritos = [...listaFavoritos, id];
+    function removerFavorito(id){
+        listaFavoritos = listaFavoritos.filter(favorito => favorito !== id);
+        guardarArmazenamento(localStorage, CHAVE_FAVORITOS, listaFavoritos);
+    }
+
+    function alternarFavorito(id){
+        if (verificarSeEFavorito(id)){
+            removerFavorito(id);
+            return;
         }
 
+        listaFavoritos = [...listaFavoritos, id];
         guardarArmazenamento(localStorage, CHAVE_FAVORITOS, listaFavoritos);
     }
 
@@ -23,5 +28,5 @@ export function criarFavoritos(){
         return listaFavoritos.length;
     }
 
-    return { adicionarOuRemover, verificarSeEFavorito, contarFavoritos };
+    return { alternarFavorito, removerFavorito, verificarSeEFavorito, contarFavoritos };
 }
