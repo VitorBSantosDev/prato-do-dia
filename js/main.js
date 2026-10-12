@@ -1,6 +1,6 @@
 import { iniciarTema } from "./tema.js";
 import { carregarReceitas } from "./api.js";
-import { criarFavoritos } from "./favoritos.js";
+import { criarGestorFavoritos } from "./favoritos.js";
 import { criarGestorReceitas } from "./receitas.js";
 import { filtrarEOrdenarReceitas, TODAS_CATEGORIAS } from "./filtros.js";
 import { criarCartao } from "./cartoes.js";
@@ -23,7 +23,7 @@ const elementoResumo = document.querySelector("#resumo-filtro");
 const botaoReporRemovidas = document.querySelector("#repor-removidas");
 const botaoLimparFiltros = document.querySelector("#limpar-filtros");
 
-const favoritos = criarFavoritos();
+const gestorFavoritos = criarGestorFavoritos();
 const gestorReceitas = criarGestorReceitas();
 
 async function iniciarListaReceitas(){
@@ -63,7 +63,7 @@ function lerCriteriosFiltro(){
         apenasFavoritas: filtroFavorito.checked,
         apenasPossiveis: filtroReceitasPossiveis.checked,
         ingredientesDespensa: converterTextoDespensa(filtroDespensa.value),
-        verificarSeEFavorito: favoritos.verificarSeEFavorito
+        verificarSeEFavorito: gestorFavoritos.verificarSeEFavorito
     };
 }
 
@@ -77,9 +77,9 @@ function mostrarReceitas(){
     } else {
         for (const receita of receitasVisiveis){
             listaReceitas.appendChild(criarCartao(receita, {
-                eFavorito: favoritos.verificarSeEFavorito(receita.id),
+                eFavorito: gestorFavoritos.verificarSeEFavorito(receita.id),
                 ingredientesDespensa: criterios.ingredientesDespensa,
-                aoClicarFavorito: () => alternarFavorito(receita),
+                aoClicarFavorito: () => tratarCliqueFavorito(receita),
                 aoClicarRemover: () => pedirConfirmacaoRemover(receita),
                 aoClicarPreparacao: () => abrirPreparacao(receita)
             }));
@@ -101,7 +101,7 @@ function mostrarResumoFiltro(receitasVisiveis){
     const somaTempo = receitasVisiveis.reduce((soma, receita) => soma + receita.tempo, 0);
     const mediaTempo = formatarTempo(Math.round(somaTempo / quantidade));
     const palavraReceita = quantidade === 1 ? "receita" : "receitas";
-    const quantidadeFavoritos = favoritos.contarFavoritos();
+    const quantidadeFavoritos = gestorFavoritos.contarFavoritos();
     const palavraFavorito = quantidadeFavoritos === 1 ? "favorita" : "favoritas";
 
     elementoResumo.textContent = `${quantidade} ${palavraReceita} · tempo médio ${mediaTempo} · ${quantidadeFavoritos} ${palavraFavorito}`;
@@ -113,31 +113,27 @@ function mostrarBotaoReporRemovidas(){
     botaoReporRemovidas.textContent = `Repor receitas removidas (${quantidadeRemovidas})`;
 }
 
-function alternarFavorito(receita){
-    favoritos.adicionarOuRemover(receita.id);
+function tratarCliqueFavorito(receita){
+    gestorFavoritos.alternarFavorito(receita.id);
     mostrarReceitas();
 }
 
-function adicionarReceitas(receitasNovas){
+function tratarReceitasNovas(receitasNovas){
     gestorReceitas.adicionarReceitas(receitasNovas);
     mostrarReceitas();
 }
 
-function removerReceita(receita){
+function tratarConfirmacaoRemocao(receita){
     if (!receita){
         return;
     }
 
     gestorReceitas.removerReceita(receita);
-
-    if (favoritos.verificarSeEFavorito(receita.id)){
-        favoritos.adicionarOuRemover(receita.id);
-    }
-
+    gestorFavoritos.removerFavorito(receita.id);
     mostrarReceitas();
 }
 
-function reporRemovidas(){
+function tratarCliqueRepor(){
     gestorReceitas.reporRemovidas();
     mostrarReceitas();
 }
@@ -176,14 +172,14 @@ filtroDespensa.addEventListener("input", () => {
     mostrarReceitas();
 });
 
-botaoReporRemovidas.addEventListener("click", reporRemovidas);
+botaoReporRemovidas.addEventListener("click", tratarCliqueRepor);
 botaoLimparFiltros.addEventListener("click", limparFiltros);
 
 filtroDespensa.value = lerArmazenamento(localStorage, CHAVE_DESPENSA, "");
 
 iniciarTema();
-iniciarModais(removerReceita);
-iniciarFormulario(receita => adicionarReceitas([receita]));
-iniciarCopiaSeguranca(gestorReceitas.obterMinhasReceitas, adicionarReceitas);
+iniciarModais(tratarConfirmacaoRemocao);
+iniciarFormulario(receita => tratarReceitasNovas([receita]));
+iniciarCopiaSeguranca(gestorReceitas.obterMinhasReceitas, tratarReceitasNovas);
 const funil = iniciarFunil(contarFiltrosAtivos);
 iniciarListaReceitas();
