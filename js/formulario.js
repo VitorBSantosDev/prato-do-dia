@@ -32,6 +32,7 @@ export function iniciarFormulario(aoAdicionarReceita){
             try {
                 receitaNova.imagem = await reduzirImagem(ficheiro);
             } catch (erro) {
+                formAdicionarReceita.imagem.value = "";
                 mostrarErros([erro.message]);
                 return;
             }
