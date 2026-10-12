@@ -137,10 +137,7 @@ export function reduzirImagem(ficheiro, largura = LARGURA_IMAGEM, altura = ALTUR
 }
 
 export function tirarAcentos(texto){
-    return texto
-        .split("")
-        .map(letra => SEM_ACENTO[letra] ?? letra)
-        .join("");
+    return texto.split("").map(letra => SEM_ACENTO[letra] ?? letra).join("");
 }
 
 export function normalizarIngrediente(texto) {
