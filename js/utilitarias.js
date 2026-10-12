@@ -28,9 +28,9 @@ export function formatarTempo(minutos){
 
     if (horas < 1){
         return `${minutosRestantes} min`;
-    }else if (minutosRestantes === 0){
+    } else if (minutosRestantes === 0){
         return `${horas} h`;
-    }else{
+    } else {
         return `${horas} h ${minutosRestantes} min`;
     }
 }
@@ -52,7 +52,7 @@ export function lerArmazenamento(armazenamento, chave, valorDefeito){
     try {
         const valorGuardado = armazenamento.getItem(chave);
 
-        if (valorGuardado === null) {
+        if (valorGuardado === null){
             return valorDefeito;
         }
 
@@ -140,12 +140,12 @@ export function tirarAcentos(texto){
     return texto.split("").map(letra => SEM_ACENTO[letra] ?? letra).join("");
 }
 
-export function normalizarIngrediente(texto) {
+export function normalizarIngrediente(texto){
     const ingredienteLimpo = limparTexto(texto);
     const ingredienteSemAcentos = tirarAcentos(ingredienteLimpo);
 
-    for (const regra of REGRAS_PLURAL) {
-        if (ingredienteSemAcentos.endsWith(regra.plural)) {
+    for (const regra of REGRAS_PLURAL){
+        if (ingredienteSemAcentos.endsWith(regra.plural)){
             return ingredienteSemAcentos.slice(0, -regra.plural.length) + regra.singular;
         }
     }
