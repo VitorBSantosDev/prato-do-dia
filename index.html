@@ -66,6 +66,7 @@
     </div>
 
     <div class="lista-receitas" id="lista-receitas"></div>
+    <p class="mensagem-flutuante" id="mensagem-remocao" role="status" hidden></p>
 
     <section class="seccao" aria-labelledby="titulo-form" id="adicionar-receita">
       <h2 id="titulo-form">Adicionar uma receita</h2>
@@ -111,7 +112,7 @@
           <small>Um passo por linha.</small>
         </div>
         <button class="botao largo" type="submit">Guardar receita</button>
-        <p class="largo" id="mensagem-sucesso" role="status" hidden></p>
+        <p class="mensagem-flutuante" id="mensagem-sucesso" role="status" hidden></p>
       </form>
     </section>
     <section class="seccao" aria-labelledby="titulo-copia">
@@ -121,7 +122,7 @@
         <button type="button" id="exportar-receitas">Exportar as minhas receitas</button>
         <label>Importar receitas<input type="file" id="importar-receitas" accept=".json,application/json"></label>
       </div>
-      <p id="mensagem-copia" role="status" hidden></p>
+      <p class="mensagem-flutuante" id="mensagem-copia" role="status" hidden></p>
     </section>
   </main>
 
