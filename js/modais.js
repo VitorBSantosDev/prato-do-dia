@@ -1,5 +1,7 @@
 import { preencherLista } from "./utilitarias.js";
 
+const ECRA_TELEMOVEL = "(max-width: 600px), (pointer: coarse) and (max-height: 500px)";
+
 const modalPreparacao = document.querySelector("#modal-preparacao");
 const modalTitulo = document.querySelector("#modal-titulo");
 const modalPassos = document.querySelector("#modal-passos");
@@ -19,6 +21,10 @@ export function abrirPreparacao(receita){
     modalPassos.textContent = "";
     preencherLista(modalPassos, receita.preparacao);
     modalPreparacao.showModal();
+
+    if (window.matchMedia(ECRA_TELEMOVEL).matches){
+        modalPreparacao.scrollTop = 0;
+    }
 }
 
 export function pedirConfirmacaoRemover(receita){
