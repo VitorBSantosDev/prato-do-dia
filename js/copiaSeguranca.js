@@ -1,11 +1,12 @@
-import { validarReceita } from "./utilitarias.js";
+import { validarReceita, criarMensagemTemporaria } from "./utilitarias.js";
 import { verificarEReceitaPropria } from "./receitas.js";
 
 const NOME_FICHEIRO_EXPORTACAO = "prato-do-dia.json";
+const DURACAO_MENSAGEM_MS = 7000;
 
 const botaoExportarReceitas = document.querySelector("#exportar-receitas");
 const inputImportarReceita = document.querySelector("#importar-receitas");
-const mensagemCopia = document.querySelector("#mensagem-copia");
+const mensagemCopia = criarMensagemTemporaria(document.querySelector("#mensagem-copia"), DURACAO_MENSAGEM_MS);
 
 export function iniciarCopiaSeguranca(obterMinhasReceitas, aoImportarReceitas){
     botaoExportarReceitas.addEventListener("click", () => {
@@ -15,11 +16,6 @@ export function iniciarCopiaSeguranca(obterMinhasReceitas, aoImportarReceitas){
     inputImportarReceita.addEventListener("change", () => {
         importarReceitas(obterMinhasReceitas(), aoImportarReceitas);
     });
-}
-
-function mostrarMensagemCopia(texto){
-    mensagemCopia.textContent = texto;
-    mensagemCopia.hidden = false;
 }
 
 function criarMensagemImportacao(quantidadeImportadas, quantidadeIgnoradas){
@@ -47,7 +43,7 @@ function verificarPodeImportar(receitaImportada, minhasReceitas){
 
 function exportarReceitas(minhasReceitas){
     if (minhasReceitas.length === 0){
-        mostrarMensagemCopia("Ainda não criou nenhuma receita para exportar.");
+        mensagemCopia.mostrarMensagemTemporaria("Ainda não criou nenhuma receita para exportar.");
         return;
     }
 
@@ -63,7 +59,7 @@ function exportarReceitas(minhasReceitas){
     URL.revokeObjectURL(endereco);
 
     const mensagemExportacao = minhasReceitas.length === 1 ? `Foi exportada ${minhasReceitas.length} receita.` : `Foram exportadas ${minhasReceitas.length} receitas.`;
-    mostrarMensagemCopia(mensagemExportacao);
+    mensagemCopia.mostrarMensagemTemporaria(mensagemExportacao);
 }
 
 async function importarReceitas(minhasReceitas, aoImportarReceitas){
@@ -85,10 +81,10 @@ async function importarReceitas(minhasReceitas, aoImportarReceitas){
         aoImportarReceitas(receitasValidas);
 
         const quantidadeIgnoradas = receitasImportadas.length - receitasValidas.length;
-        mostrarMensagemCopia(criarMensagemImportacao(receitasValidas.length, quantidadeIgnoradas));
+        mensagemCopia.mostrarMensagemTemporaria(criarMensagemImportacao(receitasValidas.length, quantidadeIgnoradas));
     } catch (erro) {
         console.error(erro);
-        mostrarMensagemCopia("Não foi possível importar. Confirme que o ficheiro é uma exportação do Prato do Dia.");
+        mensagemCopia.mostrarMensagemTemporaria("Não foi possível importar. Confirme que o ficheiro é uma exportação do Prato do Dia.");
     }
 
     inputImportarReceita.value = "";

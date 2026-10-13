@@ -21,6 +21,7 @@ const QUALIDADE_JPEG = 0.7;
 const LARGURA_IMAGEM = 400;
 const ALTURA_IMAGEM = 300;
 const MINUTOS_HORA = 60;
+const DURACAO_MENSAGEM_MS = 7000;
 
 export function formatarTempo(minutos){
     const horas = Math.floor(minutos / MINUTOS_HORA);
@@ -163,4 +164,23 @@ export function identificarIngredientesEmFalta(receita, despensa){
         const ingredienteNormalizado = normalizarIngrediente(ingrediente);
         return !INGREDIENTES_BASICOS.includes(ingredienteNormalizado) && !despensa.includes(ingredienteNormalizado);
     });
+}
+
+export function criarMensagemTemporaria(elemento, duracaoMs = DURACAO_MENSAGEM_MS){
+    let temporizador;
+
+    function esconderMensagemTemporaria(){
+        clearTimeout(temporizador);
+        elemento.hidden = true;
+    }
+
+    function mostrarMensagemTemporaria(texto){
+        elemento.textContent = texto;
+        elemento.hidden = false;
+
+        clearTimeout(temporizador);
+        temporizador = setTimeout(esconderMensagemTemporaria, duracaoMs);
+    }
+
+    return { mostrarMensagemTemporaria, esconderMensagemTemporaria };
 }
