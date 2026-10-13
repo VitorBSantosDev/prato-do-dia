@@ -8,7 +8,7 @@ import { abrirPreparacao, pedirConfirmacaoRemover, iniciarModais } from "./modai
 import { iniciarFormulario } from "./formulario.js";
 import { iniciarCopiaSeguranca } from "./copiaSeguranca.js";
 import { iniciarFunil } from "./funil.js";
-import { formatarTempo, limparTexto, lerArmazenamento, guardarArmazenamento, converterTextoDespensa } from "./utilitarias.js";
+import { formatarTempo, limparTexto, lerArmazenamento, guardarArmazenamento, converterTextoDespensa, criarMensagemTemporaria } from "./utilitarias.js";
 
 const CHAVE_DESPENSA = "prato-despensa";
 
@@ -22,6 +22,7 @@ const filtroReceitasPossiveis = document.querySelector("#so-ingredientes-despens
 const elementoResumo = document.querySelector("#resumo-filtro");
 const botaoReporRemovidas = document.querySelector("#repor-removidas");
 const botaoLimparFiltros = document.querySelector("#limpar-filtros");
+const mensagemRemocao = criarMensagemTemporaria(document.querySelector("#mensagem-remocao"));
 
 const gestorFavoritos = criarGestorFavoritos();
 const gestorReceitas = criarGestorReceitas();
@@ -131,6 +132,7 @@ function tratarConfirmacaoRemocao(receita){
     gestorReceitas.removerReceita(receita);
     gestorFavoritos.removerFavorito(receita.id);
     mostrarReceitas();
+    mensagemRemocao.mostrarMensagemTemporaria(`A receita "${receita.nome}" foi removida.`);
 }
 
 function tratarCliqueRepor(){

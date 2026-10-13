@@ -1,15 +1,12 @@
-import { validarReceita, converterTextoParaLista, separarPorVirgulas, reduzirImagem, lerArmazenamento, guardarArmazenamento, apagarArmazenamento, preencherLista } from "./utilitarias.js";
+import { validarReceita, converterTextoParaLista, separarPorVirgulas, reduzirImagem, lerArmazenamento, guardarArmazenamento, apagarArmazenamento, preencherLista, criarMensagemTemporaria } from "./utilitarias.js";
 import { criarIdReceitaPropria } from "./receitas.js";
 
 const CHAVE_RASCUNHO = "prato-rascunho";
 const IMAGEM_PADRAO = "img/sem-imagem.svg";
-const DURACAO_MENSAGEM_MS = 5000;
 
 const formAdicionarReceita = document.querySelector("#form-adicionar-receita");
 const caixaErros = document.querySelector("#erros");
-const mensagemSucesso = document.querySelector("#mensagem-sucesso");
-
-let temporizadorSucesso;
+const mensagemSucesso = criarMensagemTemporaria(document.querySelector("#mensagem-sucesso"));
 
 export function iniciarFormulario(aoAdicionarReceita){
     formAdicionarReceita.addEventListener("input", guardarRascunho);
@@ -40,7 +37,7 @@ export function iniciarFormulario(aoAdicionarReceita){
 
         aoAdicionarReceita(receitaNova);
         limparFormulario();
-        mostrarSucesso(`A receita "${receitaNova.nome}" foi adicionada com sucesso.`);
+        mensagemSucesso.mostrarMensagemTemporaria(`A receita "${receitaNova.nome}" foi adicionada com sucesso.`);
     });
 
     reporRascunho();
@@ -78,18 +75,7 @@ function mostrarErros(listaMensagens){
     preencherLista(caixaErros, listaMensagens);
     caixaErros.hidden = false;
     caixaErros.scrollIntoView({ block: "start" });
-    mensagemSucesso.hidden = true;
-    clearTimeout(temporizadorSucesso);
-}
-
-function mostrarSucesso(texto){
-    mensagemSucesso.textContent = texto;
-    mensagemSucesso.hidden = false;
-
-    clearTimeout(temporizadorSucesso);
-    temporizadorSucesso = setTimeout(() => {
-        mensagemSucesso.hidden = true;
-    }, DURACAO_MENSAGEM_MS);
+    mensagemSucesso.esconderMensagemTemporaria();
 }
 
 function guardarRascunho(){
