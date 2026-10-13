@@ -362,8 +362,8 @@ input, select, textarea {
     font-variant-numeric: tabular-nums; }
   
 .remover {
-    align-self: flex-start; 
-    margin-top: auto;
+    align-self: flex-start;
+    margin-top: var(--espaco-pequeno);
     padding: 6px 14px; 
     border: 1px solid var(--linha);
     border-radius: var(--raio-redondo); 
@@ -581,7 +581,7 @@ footer p {
 
 .ver-preparacao {
     align-self: flex-start;
-    margin-top: var(--espaco-pequeno);
+    margin-top: auto;
     padding: 0;
     border: none;
     background: none;
@@ -819,7 +819,7 @@ input[type="file"]::file-selector-button {
     .ver-preparacao {
         align-self: stretch;
         min-height: 44px;
-        margin-top: var(--espaco);
+        margin-top: auto;
         padding: var(--espaco-pequeno) var(--espaco);
         border: 1px solid var(--azul);
         border-radius: var(--raio-redondo);
@@ -839,6 +839,17 @@ input[type="file"]::file-selector-button {
     }
 }
 
+@media (max-width: 1024px) {
+    .campo-fotografia {
+        grid-column: 1 / -1;
+    }
+}
+
+@media (max-width: 600px), (pointer: coarse) and (max-height: 500px) {
+    #modal-imagem {
+        max-height: 35vh;
+    }
+}
 
 @media (max-width: 600px) {
     .filtros .campo:not(.campo-pesquisa) {
